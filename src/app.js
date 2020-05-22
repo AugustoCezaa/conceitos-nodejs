@@ -40,7 +40,7 @@ app.put("/repositories/:id", (request, response) => {
    repository.id === id );
 
   if(repositoryIndex< 0){
-    return response.statusCode(400).send();
+    return response.status(400).send('');
   }
     
    const repository = {
@@ -61,13 +61,14 @@ app.delete("/repositories/:id", (request, response) => {
  
  const repositoryIndex = repositories.findIndex(repository => repository.id === id );
 
+  
   if(repositoryIndex >= 0){
     repositories.splice(repositoryIndex,1);
   }else{
-    return response.statusCode(404).send();
+    return response.status(400).send('');;
  }
 
-  return response.statusCode(204).send();
+  return response.status(204).send('');;
 });
 
 app.post("/repositories/:id/like", (request, response) => {
@@ -78,7 +79,7 @@ app.post("/repositories/:id/like", (request, response) => {
 
 
    if(repositoryIndex < 0){
-    return response.statusCode(400).send();
+    return response.status(400).send('');;
   }
 
   repositories[repositoryIndex].likes++;
